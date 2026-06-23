@@ -1,0 +1,2146 @@
+{
+  "name": "Automated AI Powered Social Media Content Generationfor  X + Facebook + Instagram + LinkedIn",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "#  User Input\n",
+        "height": 360,
+        "width": 360,
+        "color": 4
+      },
+      "id": "aa316444-d0d5-46bb-a5f9-f5e86a6c6462",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        176
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# Social Media Content \n- LinkedIn\n- Instagram\n- Facebook\n- X\n\n",
+        "height": 600,
+        "width": 640,
+        "color": 6
+      },
+      "id": "a98227eb-e9a0-4150-9124-b868b1b67b4c",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        400,
+        144
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# 👍 Approve Content Before Proceeding",
+        "height": 360,
+        "width": 400,
+        "color": 4
+      },
+      "id": "c98d93c1-0b3e-4fec-bd45-f681590bcd55",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2144,
+        384
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# ✉️ Prepare & Format Approval Email",
+        "height": 560,
+        "width": 500,
+        "color": 5
+      },
+      "id": "2b8caeaa-f22f-4fef-8e70-437d3c9bc78b",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1600,
+        176
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"name\": {\n      \"type\": \"string\"\n    },\n    \"description\": {\n      \"type\": \"string\"\n    },\n    \"platform_posts\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"LinkedIn\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"image_suggestion\": {\n              \"type\": \"string\"\n            },\n            \"post\": {\n              \"type\": \"string\"\n            },\n            \"hashtags\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\"\n              }\n            },\n            \"call_to_action\": {\n              \"type\": \"string\"\n            }\n          }\n        },\n        \"Instagram\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"image_suggestion\": {\n              \"type\": \"string\"\n            },\n            \"caption\": {\n              \"type\": \"string\"\n            },\n            \"hashtags\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\"\n              }\n            },\n            \"emojis\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\"\n              }\n            },\n            \"call_to_action\": {\n              \"type\": \"string\"\n            }\n          }\n        },\n        \"Facebook\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"post\": {\n              \"type\": \"string\"\n            },\n            \"hashtags\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\"\n              }\n            },\n            \"call_to_action\": {\n              \"type\": \"string\"\n            },\n            \"image_suggestion\": {\n              \"type\": \"string\"\n            }\n          }\n        },\n        \"X-Twitter\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"video_suggestion\": {\n              \"type\": \"string\"\n            },\n            \"image_suggestion\": {\n              \"type\": \"string\"\n            },\n            \"post\": {\n              \"type\": \"string\"\n            },\n            \"hashtags\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\"\n              }\n            },\n            \"character_limit\": {\n              \"type\": \"integer\"\n            }\n          }\n        },\n        \"Threads\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"image_suggestion\": {\n              \"type\": \"string\"\n            },\n            \"text_post\": {\n              \"type\": \"string\"\n            },\n            \"hashtags\": {\n              \"type\": \"array\",\n              \"items\": {\n                \"type\": \"string\"\n              }\n            },\n            \"call_to_action\": {\n              \"type\": \"string\"\n            }\n          }\n        }\n      }\n    },\n    \"additional_notes\": {\n      \"type\": \"string\"\n    }\n  }\n}"
+      },
+      "id": "61b8e610-6a33-4068-a959-da1ea5ed10e0",
+      "name": "Social Media Content",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        864,
+        544
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "url": "=https://image.pollinations.ai/prompt/{{$('Social Media Content Factory').item.json.output.description.replaceAll(' ','-').replaceAll(',','').replaceAll('.','') }}",
+        "options": {}
+      },
+      "id": "04807180-70de-4d21-8d46-af6cd0f9a4cb",
+      "name": "pollinations.ai",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1280,
+        1856
+      ],
+      "typeVersion": 4.2,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Create Post Image\nhttps://pollinations.ai/\nhttps://image.pollinations.ai/prompt/[your image description]\n\n(alternative)",
+        "height": 340,
+        "width": 300
+      },
+      "id": "138dc9ff-19fb-4291-95b2-9640bac01d39",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1184,
+        1696
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 5,
+        "options": {
+          "includeUnpaired": true
+        }
+      },
+      "id": "d0311b0d-dad6-4bc3-8fd1-cff990b64fd7",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        1312,
+        1056
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.imgbb.com/1/upload",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "expiration",
+              "value": "0"
+            },
+            {
+              "name": "key",
+              "value": "={{ $env.IMGBB_API_KEY}} "
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "2a8a2f81-3497-44f1-a00a-68ba04b264bf",
+      "name": "Save Image to imgbb.com3",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        976,
+        768
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v23.0",
+        "node": "17841420161085360",
+        "edge": "media_publish",
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "creation_id",
+                "value": "={{ $json.id }}"
+              },
+              {
+                "name": "caption",
+                "value": "=This is test"
+              }
+            ]
+          }
+        }
+      },
+      "id": "f5216c61-980b-40c3-a01e-42aa38bffee5",
+      "name": "Instragram Post",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "position": [
+        2368,
+        1008
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true,
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "w1bNNOWxXehKQojL",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v23.0",
+        "node": "[your-unique-id]",
+        "edge": "photos",
+        "sendBinaryData": true,
+        "binaryPropertyName": "data",
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "message",
+                "value": "={{ $('Social Media Content Factory').item.json.output.platform_posts.Facebook.post }}\n\n{{ $('Social Media Content Factory').item.json.output.platform_posts.Facebook.call_to_action }}\n"
+              },
+              {
+                "name": "link",
+                "value": "={{ $('Social Media Content Factory').item.json.output.platform_posts.Facebook.call_to_action }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "84e18d99-7b00-4561-bd36-488806c26fc9",
+      "name": "Facebook Post",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "position": [
+        2048,
+        1664
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true,
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "w1bNNOWxXehKQojL",
+          "name": "Unnamed credential"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "text": "={{ $('Social Media Content Factory').item.json.output.platform_posts.LinkedIn.post }}\n{{ $('Social Media Content Factory').item.json.output.platform_posts.LinkedIn.call_to_action }}\n{{ $('Social Media Content Factory').item.json.output.platform_posts.LinkedIn.hashtags }}\n{{ $('Social Media Content Factory').item.json.output.platform_posts.LinkedIn.call_to_action }}",
+        "shareMediaCategory": "IMAGE",
+        "binaryPropertyName": "=data",
+        "additionalFields": {}
+      },
+      "id": "e34f8d8f-6fad-4ddc-bc7b-67ae77fb4045",
+      "name": "LinkedIn Post",
+      "type": "n8n-nodes-base.linkedIn",
+      "position": [
+        2080,
+        1856
+      ],
+      "typeVersion": 1,
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "id": "7a8cfa90-437b-4b2d-9b85-930b6a924b8f",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        1824,
+        1040
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {
+          "includeUnpaired": true
+        }
+      },
+      "id": "6831c46d-72c9-4720-acd8-a879c16a29be",
+      "name": "Merge2",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        1760,
+        1760
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "d831dc23-f5ff-4d79-a709-371472e60719",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "position": [
+        64,
+        1600
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "=vipinnegi0038@gmail.com",
+        "subject": "=🔥FOR APPROVAL🔥{{ $('Social Media Content Factory').item.json.output.name }} - {{ $('Social Media Content Factory').item.json.output.description }}",
+        "message": "={{ $json.output }}",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double"
+          }
+        },
+        "options": {
+          "limitWaitTime": {
+            "values": {
+              "resumeAmount": 45,
+              "resumeUnit": "minutes"
+            }
+          }
+        }
+      },
+      "id": "8e354cdd-72ee-42e0-a4a7-c75a0b8d8758",
+      "name": "Gmail User for Approval",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        2304,
+        544
+      ],
+      "webhookId": "c46cf421-ddb6-45a8-b83b-80b381666f0e",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yL8Nb9BxFcOIbYXK",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Publish to Social Media",
+        "height": 1100,
+        "width": 300,
+        "color": 6
+      },
+      "id": "3143b315-5e3f-4cd0-89a8-bc997f624b3d",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1904,
+        944
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Format Results",
+        "height": 880,
+        "width": 300,
+        "color": 5
+      },
+      "id": "35945198-caed-499b-b236-f04b76010345",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2240,
+        1168
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# Step 4️⃣: Send Final Results of Social Media Factory",
+        "height": 712,
+        "width": 1020,
+        "color": 7
+      },
+      "id": "42078d99-25e7-49aa-8435-8e35521d638f",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -80,
+        1376
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Create Post Image",
+        "height": 260,
+        "width": 260,
+        "color": 3
+      },
+      "id": "295e112d-19bc-46f5-8ae8-382e3d371df4",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        256,
+        976
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "={{ $env.EMAIL_ADDRESS_JOE }} ",
+        "subject": "=🔥FOR APPROVAL🔥 New LinkedIn Post",
+        "message": "=<html>\n<body style=\"margin:0; padding:0; font-family: Arial, sans-serif; background-color: #f5f5f5;\">\n  <div style=\"max-width: 600px; margin: 0 auto; padding: 20px;\">\n\n    <h2 style=\"font-size:20px; color:#333; margin:0 0 15px 0;\">LinkedIn</h2>\n      \n    <!-- LinkedIn Card -->\n    <div style=\"background: #ffffff; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);\">\n\n      <!-- Card Header Image -->\n      <div style=\"height: 200px; overflow: hidden; border-radius: 8px 8px 0 0;\">\n        <img src=\"{{ $json.data.medium.url }}\" alt=\"Featured Image\" style=\"width: 100%; height: 100%; object-fit: cover;\">\n      </div>\n\n      <!-- Card Content -->\n      <div style=\"padding: 25px;\">\n\n        <p style=\"font-size:16px; color:#555; line-height: 1.6; margin-bottom: 15px;\">\n          {{ $('Social Media Content Factory').item.json.output.platform_posts.LinkedIn.post }}\n        </p>\n        \n        <div style=\"margin: 15px 0;\">\n          <span style=\"display: inline-block; background: #f0f0f0; padding: 4px 8px; margin: 2px; border-radius: 4px; font-size:12px; color:#333;\">\n            {{ $('Social Media Content Factory').item.json.output.platform_posts.LinkedIn.hashtags }}\n          </span>\n        </div>\n\n        <p style=\"font-size:14px; color:#1a0dab; font-weight: 600; margin:15px 0 0 0;\">\n          {{ $('Social Media Content Factory').item.json.output.platform_posts.LinkedIn.call_to_action }}\n        </p>\n      </div>\n    </div>\n  </div>\n</body>\n</html>\n",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double"
+          }
+        },
+        "options": {
+          "limitWaitTime": {
+            "values": {
+              "resumeAmount": 45,
+              "resumeUnit": "minutes"
+            }
+          }
+        }
+      },
+      "id": "bb768f25-5ebe-4091-ba98-47aaf3dc0da4",
+      "name": "Approve Final Post Content",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        1504,
+        1376
+      ],
+      "webhookId": "c46cf421-ddb6-45a8-b83b-80b381666f0e",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yL8Nb9BxFcOIbYXK",
+          "name": "Gmail account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Final Approval before Publishing to Social Feeds\n(optional)",
+        "height": 340,
+        "width": 300
+      },
+      "id": "61567bff-2cdd-4e77-9f8a-398a4be0b0fc",
+      "name": "Sticky Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1184,
+        1328
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "efe337a1-63e0-4513-873d-421bf41e4868",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "effb2336-b38a-4adb-8b87-3c22b67c1683",
+      "name": "Is Approved?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        1616,
+        1152
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5c6edc76-1e3b-45b0-8baa-33a14c678150",
+              "name": "Instagram Post Result",
+              "type": "string",
+              "value": "={{ $json }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e2ca767e-7e21-454f-b8d6-5e668c62caa5",
+      "name": "Instagram Result",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2480,
+        1232
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5c6edc76-1e3b-45b0-8baa-33a14c678150",
+              "name": "X Post Result",
+              "type": "string",
+              "value": "={{ $json }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4d043c2e-f579-479f-8028-273792b452b3",
+      "name": "X Result",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2368,
+        1296
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5c6edc76-1e3b-45b0-8baa-33a14c678150",
+              "name": "Facebook Post Result",
+              "type": "string",
+              "value": "={{ $json }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b357d93e-a923-49a9-b90f-c5b0dd2d4615",
+      "name": "Facebook Result",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2336,
+        1680
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5c6edc76-1e3b-45b0-8baa-33a14c678150",
+              "name": "LinkedIn Post Result",
+              "type": "string",
+              "value": "={{ $json }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "39b47112-04bd-4317-b96e-d1e207888485",
+      "name": "LinkedIn Result",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        2336,
+        1856
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "formTitle": "workflows.diy",
+        "formDescription": "=Welcome to the workflows.diy AI-Powered Assistant!\n\nThis tool is designed to streamline and enhance your social media content creation process.\n\nSimply provide key inputs like a topic or title and an optional image, and our intelligent agent will generate engaging, platform-specific post descriptions tailored to your audience. \n\nWhether you're a marketer, business owner, or influencer, this assistant saves you time while delivering professional-quality content optimized for maximum impact.\n\n",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Topic",
+              "placeholder": "Provide a concise and clear title or main topic for your post (e.g., \"New Product Launch,\" \"Exciting Company Update\"). This helps the AI accurately capture the focus of your content.",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Keywords or Hashtags (optional)",
+              "placeholder": "Include any specific keywords or hashtags you'd like the AI to incorporate into the post. This ensures the content aligns with your branding and campaign objectives.",
+              "requiredField": "={{ false }}"
+            },
+            {
+              "fieldLabel": "Link (optional)",
+              "placeholder": "=Provide the URL of any product, service, form, support page, or other resource. This link will be included in the generated post to direct your audience to the relevant content.\n"
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "buttonLabel": "Automatically Generate Social Media Content"
+        }
+      },
+      "id": "71416508-d3d1-4281-a974-f4592372ac26",
+      "name": "Submit Social Post Details",
+      "type": "n8n-nodes-base.formTrigger",
+      "position": [
+        128,
+        336
+      ],
+      "webhookId": "f1066a92-150a-4ced-9659-809897dcb316",
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "content": "# Step 1️⃣: Create Social Media Written Content\nNote:  \nYou could use the output of step 1 to create your written content and manually post if required.  \nYou so not have to implement step 2.",
+        "height": 760,
+        "width": 2640,
+        "color": 7
+      },
+      "id": "fee0ec6a-1f9a-4373-b4b1-a34448e3412b",
+      "name": "Sticky Note10",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -32,
+        48
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# Step 2️⃣: Create Image or Upload Image for Social Post",
+        "height": 460,
+        "width": 1020,
+        "color": 7
+      },
+      "id": "8c4140c0-c553-474f-97be-cbb43280b630",
+      "name": "Sticky Note11",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -64,
+        816
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "# Step 3️⃣: Publish Final Social Media Posts",
+        "height": 1260,
+        "width": 1680,
+        "color": 7
+      },
+      "id": "68b3c7e2-15b3-4011-8b3b-3275a58a22ed",
+      "name": "Sticky Note12",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1072,
+        800
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "id": "b9b26782-b8a8-41ce-89bd-f45ba92f345b",
+      "name": "Merge Results",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        2656,
+        1632
+      ],
+      "typeVersion": 3,
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are an AI Image Generation Prompt Engineer, a leading creator of high-converting, visually stunning prompts for text-to-image models (like Midjourney, DALL-E 3, Stable Diffusion, and Pollinations.ai). Your goal is to craft engaging, platform-specific image prompt concepts and visual guidelines for LinkedIn, Instagram, Facebook, and Twitter (X). Each image concept must align with the platform’s audience preferences, tone, and visual style. Provide highly detailed, descriptive prompts that resonate with professionals, creators, and online communities.\n\n---\n\n### 📅 CONTEXT\n- Current Date and Time: {{ $now }}\n\n---\n\n### 📥 INPUT DATA\n- Topic / Concept for the Image: {{ $json.Topic }}\n- Keywords / Style Tags (Optional): {{ $json.formMode }}\n- Reference Link / Aspect Ratio (Optional): {{ $json['Link (optional)'] }} *(CRITICAL: If a reference image link is provided here, deeply analyze its style, color palette, product type, and composition, and strictly use it as the foundational anchor for all generated prompts).*\n\n---\n\n### 🎯 KEY OBJECTIVES\n1. **Reference Image Integration (Priority):** If a reference image URL is provided in the input, extract its visual DNA (e.g., specific shoe model, materials, textures, colorway, and lighting style). Incorporate these exact visual identifiers into every platform-specific prompt to maintain product continuity across all channels.\n2. **Platform Visual Optimization:** Tailor the image dimensions, style, complexity, and subject matter to suit each platform’s algorithm and user behavior.\n3. **Detailed Prompt Engineering:** Use descriptive sensory language, lighting modifiers, camera angles, and art styles (e.g., photorealistic, 3D render, minimalist vector) to ensure high-quality generation.\n4. **Engagement Focus:** Design concepts that immediately grab attention in a fast-scrolling feed and match the mood of the accompanying text.\n5. **Text-in-Image Safety:** Avoid complex text inside images unless specified, ensuring the composition works naturally without relying on spelling.\n\n---\n\n### 📸 PLATFORM GUIDELINES\n\n#### 1. LinkedIn\n- **Style:** Clean, professional, corporate illustration, or high-end editorial photography. \n- **Tone:** Business-oriented, authoritative, and trustworthy. Focus on workplace diversity, modern office aesthetics, growth, or clean data visualizations.\n- **Aspect Ratio:** 1:1 (Square) or 4:5 (Vertical).\n- **Prompt Elements:** \"Professional photography, soft studio lighting, corporate editorial style, sharp focus, clean background, 8k resolution.\"\n\n#### 2. Instagram\n- **Style:** Visually breathtaking, lifestyle-focused, vibrant, or highly artistic/trendy (e.g., cyberpunk, synthwave, boho-chic, hyper-realistic 3D).\n- **Tone:** Inspirational, aesthetically pleasing, and engaging.\n- **Aspect Ratio:** 4:5 (Vertical Feed) or 9:16 (Stories/Reels format).\n- **Prompt Elements:** If a reference link is available, you MUST start the prompt directly with the image URL string: \"{{ $json['Link (optional)'] }}\". Follow it immediately with detailed descriptive keywords: \"Hyper-realistic lifestyle photography of the exact item from the link. Maintain its distinct colors, textures, materials, and design details flawlessly. Set in a premium, sun-drenched scene with cinematic lighting, shallow depth of field, beautiful bokeh, 8k resolution, professional color grading.\"\n\n#### 3. Facebook\n- **Style:** Relatable, warm, community-focused, friendly illustrations or real-world candid photography.\n- **Tone:** Approachable, emotional, and family or small-business-friendly.\n- **Aspect Ratio:** 1:1 (Square) or 16:9 (Landscape).\n- **Prompt Elements:** \"Warm lighting, candid moment, cheerful atmosphere, bright colors, friendly and welcoming aesthetic, high definition.\"\n\n#### 4. Twitter (X)\n- **Style:** High-impact, meme-friendly, bold vector graphics, or striking high-contrast imagery that stands out in dark mode.\n- **Tone:** Sharp, modern, clever, and instantaneous.\n- **Aspect Ratio:** 16:9 (Landscape).\n- **Prompt Elements:** \"Bold minimalist graphic design, high contrast, striking composition, vibrant accents, optimized for quick viewing.\"\n\n---\n\n### 🌍 GLOBAL IMAGE MODIFIERS\nAlways include a selection of these rendering terms to maximize quality depending on the requested style:\n- **For Photorealism:** \"Hyper-realistic, 8k resolution, shot on 35mm lens, f/1.8, global illumination, natural lighting.\"\n- **For Digital Art:** \"Octane render, 3D asset style, Unreal Engine 5 aesthetic, volumetric lighting, clean vector illustration.\"\n\n---\n\n### 📋 OUTPUT FORMAT\nGenerate your response strictly matching the requested JSON schema. Do not include any conversational filler outside of the JSON block.",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Use the provided tools to research the topic based on latest information.  Todays date is {{ $now }}"
+        }
+      },
+      "id": "9e2bc0f6-b6cd-4e9f-8f6d-fa7d6ac125b4",
+      "name": "Social Media Content Factory",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        624,
+        320
+      ],
+      "retryOnFail": true,
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=Generate clean, modern HTML email content from the provided JSON data with these requirements:\n- Use table-based layout with inline CSS for email compatibility\n- Create card sections for each platform containing:\n  • Title header (20px) \n  • Post content (16px) \n  • Video/image suggestions (italic 14px)\n  • Hashtag list (inline-block with # prefix)\n  • Emoji preservation where present\n  • Call-to-action (bold 14px)\n- Structure using:\n  • 600px max-width container\n  • 20px padding between cards\n  • Left-aligned text hierarchy\n  • Arial/sans-serif font stack\n  • Email-safe colors (#333 text, #555 secondary)\n- Include all platform-specific elements:\n  ▶ Video/image suggestions in italic\n  ▶ Hashtags as linked search terms\n  ▶ Emojis in original positions\n  ▶ Character limits for Twitter\n  ▶ Platform-specific CTAs\n  ▶ Visual quality reminders\n- Format hashtags as:\n  <span style=\"display: inline-block; background: #f0f0f0; padding: 2px 6px; margin: 2px; border-radius: 4px;\">#tag</span>\n\nInput data: {{ $json.output.toJsonString() }}\n\nRemove ALL code blocks and comments. Output ONLY the raw HTML with:\n- Platform cards in JSON order\n- All data elements represented\n- Mobile-responsive tables\n- W3C-valid markup\n\n## Example HTML:\n<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#fbfcfe;border:1px solid #dbdfe7;border-radius:8px\">\n\t\t<tbody><tr>\n\t\t\t<td align=\"center\" style=\"padding:24px 0\">\n\t\t\t\t<table width=\"448\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:100%;max-width:448px;background-color:#ffffff;border:1px solid #dbdfe7;border-radius:8px;padding:24px\">\n\t\t\t\t\t<tbody><tr>\n\t\t\t\t\t\t<td style=\"text-align:center;padding-top:8px;font-family:Arial,sans-serif;font-size:14px;color:#7e8186\">\n\t\t\t\t\t\t\t<p style=\"white-space:pre-line\"></p><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;font-family:Arial,sans-serif;color:#333\"><tbody><tr><td style=\"padding:20px\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f9f9f9;margin-bottom:20px;padding:20px;border-radius:8px\"><tbody><tr><td style=\"font-size:20px;font-weight:bold;padding-bottom:10px\">LinkedIn</td></tr><tr><td style=\"font-size:16px;padding-bottom:10px\">Discover why n8n stands out as the premier workflow automation tool. Its flexibility and open-source nature empower businesses to create custom solutions that drive efficiency and innovation.</td></tr><tr><td style=\"font-size:14px;font-style:italic;padding-bottom:10px\">Video/Image suggestion pending</td></tr><tr><td style=\"padding-bottom:10px\"><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#Innovation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#Automation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>WorkflowSolutions</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>DigitalTransformation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>Leadership</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#workflowsdiy</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#n8n</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>AIWorkflows</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#WorkflowAutomation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\"><wbr>#TechSolutions</span></td></tr><tr><td style=\"font-size:14px;font-weight:bold\">Visit workflows.diy to explore how n8n can transform your business processes!</td></tr></tbody></table><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f9f9f9;margin-bottom:20px;padding:20px;border-radius:8px\"><tbody><tr><td style=\"font-size:20px;font-weight:bold;padding-bottom:10px\">Instagram</td></tr><tr><td style=\"font-size:14px;font-style:italic;padding-bottom:10px\">Eye-catching infographic comparing n8n to other automation tools, highlighting its unique features.</td></tr><tr><td style=\"font-size:16px;padding-bottom:10px\">n8n: The ultimate workflow automation tool! <img data-emoji=\"💡\" class=\"an1\" alt=\"💡\" aria-label=\"💡\" draggable=\"false\" src=\"https://fonts.gstatic.com/s/e/notoemoji/16.0/1f4a1/32.png\" loading=\"lazy\"> Unlock limitless possibilities with its open-source platform. Boost your productivity and streamline your processes. <img data-emoji=\"💤\" class=\"an1\" alt=\"💤\" aria-label=\"💤\" draggable=\"false\" src=\"https://fonts.gstatic.com/s/e/notoemoji/16.0/1f4a4/32.png\" loading=\"lazy\"></td></tr><tr><td style=\"padding-bottom:10px\"><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#AutomationLife</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#TechInnovation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\"><wbr>#WorkflowTips</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#Programming</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>Engineering</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#workflowsdiy</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#n8n</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>AIWorkflows</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#WorkflowAutomation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\"><wbr>#TechSolutions</span></td></tr><tr><td style=\"font-size:14px;font-weight:bold\">Visit our website: <a href=\"https://n8n.io/\" target=\"_blank\" data-saferedirecturl=\"https://www.google.com/url?q=https://n8n.io/&amp;source=gmail&amp;ust=1741030878129000&amp;usg=AOvVaw1Nr6ek3eGwe94zlbPaJrzT\">https://n8n.io/</a> #AutomationLife #TechInnovation #WorkflowTips #Programming #Engineering</td></tr></tbody></table><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f9f9f9;margin-bottom:20px;padding:20px;border-radius:8px\"><tbody><tr><td style=\"font-size:20px;font-weight:bold;padding-bottom:10px\">Facebook</td></tr><tr><td style=\"font-size:16px;padding-bottom:10px\">See why businesses are choosing n8n for their workflow automation needs. From its user-friendly interface to its powerful customization options, n8n is revolutionizing how companies approach automation.</td></tr><tr><td style=\"font-size:14px;font-style:italic;padding-bottom:10px\">A visually appealing graphic showcasing n8n's key features and benefits.</td></tr><tr><td style=\"padding-bottom:10px\"><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#SmallBusinessAutomation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>Entrepreneurship</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#Leadership</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>WorkflowInnovation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>workflowsdiy</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#n8n</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#AIWorkflows</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>WorkflowAutomation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>TechSolutions</span></td></tr><tr><td style=\"font-size:14px;font-weight:bold\">What's your favorite automation tip? Share in the comments!</td></tr></tbody></table><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f9f9f9;margin-bottom:20px;padding:20px;border-radius:8px\"><tbody><tr><td style=\"font-size:20px;font-weight:bold;padding-bottom:10px\">Twitter</td></tr><tr><td style=\"font-size:16px;padding-bottom:10px\">n8n: The best #WorkflowAutomation tool! Open-source, customizable, and powerful. Transform your business processes today!</td></tr><tr><td style=\"padding-bottom:10px\"><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#WorkflowTrends</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#AIWorkflows</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>AutomationTips</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#NoCodeSolutions</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\"><wbr>#workflowsdiy</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#n8n</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>TechSolutions</span></td></tr></tbody></table><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f9f9f9;margin-bottom:20px;padding:20px;border-radius:8px\"><tbody><tr><td style=\"font-size:20px;font-weight:bold;padding-bottom:10px\">TikTok</td></tr><tr><td style=\"font-size:14px;font-style:italic;padding-bottom:10px\">Quick demo showcasing how n8n simplifies complex workflows with its intuitive interface.</td></tr><tr><td style=\"font-size:16px;padding-bottom:10px\">n8n: Your go-to for effortless workflow automation! <img data-emoji=\"✨\" class=\"an1\" alt=\"✨\" aria-label=\"✨\" draggable=\"false\" src=\"https://fonts.gstatic.com/s/e/notoemoji/16.0/2728/32.png\" loading=\"lazy\"></td></tr><tr><td style=\"padding-bottom:10px\"><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#n8nTips</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#workflowsdiy</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#n8n</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>AIWorkflows</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#WorkflowAutomation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\"><wbr>#TechSolutions</span></td></tr><tr><td style=\"font-size:14px;font-weight:bold\">Follow workflows.diy for more automation hacks!</td></tr></tbody></table><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f9f9f9;margin-bottom:20px;padding:20px;border-radius:8px\"><tbody><tr><td style=\"font-size:20px;font-weight:bold;padding-bottom:10px\">Threads</td></tr><tr><td style=\"font-size:16px;padding-bottom:10px\">n8n is transforming the automation landscape. Its open-source nature and extensive integrations make it a top choice for businesses of all sizes. What are your thoughts on the future of workflow automation?</td></tr><tr><td style=\"padding-bottom:10px\"><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#workflowsdiy</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#n8n</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#AIWorkflows</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>WorkflowAutomation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>TechSolutions</span></td></tr><tr><td style=\"font-size:14px;font-weight:bold\">Share your insights below!</td></tr></tbody></table><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color:#f9f9f9;margin-bottom:20px;padding:20px;border-radius:8px\"><tbody><tr><td style=\"font-size:20px;font-weight:bold;padding-bottom:10px\">YouTube Shorts</td></tr><tr><td style=\"font-size:14px;font-style:italic;padding-bottom:10px\">Short tutorial demonstrating how to build a simple automation workflow in n8n.</td></tr><tr><td style=\"font-size:16px;padding-bottom:10px\">Learn why n8n is the top choice for workflow automation. Its open-source platform and powerful features make it a game-changer for businesses.</td></tr><tr><td style=\"padding-bottom:10px\"><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#n8n</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#automation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>workflowautomation</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#nocode</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>workflowsdiy</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#AIWorkflows</span><span style=\"display:inline-block;background:#f0f0f0;padding:2px 6px;margin:2px;border-radius:4px\">#<wbr>TechSolutions</span></td></tr><tr><td style=\"font-size:14px;font-weight:bold\">Subscribe for more workflow tips!</td></tr></tbody></table></td></tr></tbody></table><p></p>\n\t\t\t\t\t\t</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n</table>\n",
+        "options": {}
+      },
+      "id": "d6d7a6b2-50ec-450d-a3e7-4fd1389ab90f",
+      "name": "Prepare Content Review Email",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        1776,
+        288
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=Parse the social media post results and generate a modern single line HTML table showing platform statuses. For each entry:\n\n-Extract platform name from the JSON key\n-Identify status (Success/Error) based on statusCode or error presence\n-Capture error message if present\n-Format as responsive HTML table with professional styling\n-Ensure email client compatibility with inline CSS\n-Include error handling for invalid JSON formats\n-Remove all line breaks and \\n from response.\n-Avoid any preamble or further explanation and remove all ``` and ```html from response.\n\n## Implementation Example:\nThis solution uses the parsed results from your workflow to generate:\n<table style=\"border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; margin: 20px 0; background-color: #f9f9f9; border: 1px solid #ddd;\">\n    <thead>\n        <tr style=\"background-color: #007bff; color: #fff;\">\n            <th style=\"border: 1px solid #ddd; padding: 12px; text-align: left;\">Platform</th>\n            <th style=\"border: 1px solid #ddd; padding: 12px; text-align: left;\">Status</th>\n            <th style=\"border: 1px solid #ddd; padding: 12px; text-align: left;\">Details</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr style=\"background-color: #ffffff;\">\n            <td style=\"border: 1px solid #ddd; padding: 12px;\">Instagram</td>\n            <td style=\"border: 1px solid #ddd; padding: 12px; color: #dc3545;\">✗ Error</td>\n            <td style=\"border: 1px solid #ddd; padding: 12px;\">Unsupported post request. Object with ID '[your-unique-id]' does not exist, cannot be loaded due to missing permissions.</td>\n        </tr>\n        <tr style=\"background-color: #f8f9fa;\">\n            <td style=\"border: 1px solid #ddd; padding: 12px;\">X (Twitter)</td>\n            <td style=\"border: 1px solid #ddd; padding: 12px; color: #dc3545;\">✗ Error</td>\n            <td style=\"border: 1px solid #ddd; padding: 12px;\">Unable to sign without access token</td>\n        </tr>\n        <tr style=\"background-color: #ffffff;\">\n            <td style=\"border: 1px solid #ddd; padding: 12px;\">Facebook</td>\n            <td style=\"border: 1px solid #ddd; padding: 12px; color: #dc3545;\">✗ Error</td>\n            <td style=\"border: 1px solid #ddd; padding: 12px;\">Unsupported post request. Object with ID '[your-unique-id]' does not exist, cannot be loaded due to missing permissions.</td>\n        </tr>\n        <tr style=\"background-color: #f8f9fa;\">\n            <td style=\"border: 1px solid #ddd; padding: 12px;\">LinkedIn</td>\n            <td style=\"border: 1px solid #ddd; padding: 12px; color: #dc3545;\">✗ Error</td>\n            <td style=\"border: 1px solid #ddd; padding: 12px;\">Unable to sign without access token</td>\n        </tr>\n    </tbody>\n</table>\n\n\nThis is the social media post results: \n{{ $json.data.toJsonString() }}\n",
+        "options": {}
+      },
+      "id": "941e4290-948f-4184-919e-9faa49ee72f0",
+      "name": "Prepare Results Email",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        288,
+        1504
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=Parse the social media post results and generate a brief summary of the results.\n\nThis is the social media post results: \n{{ $json.data.toJsonString() }}\n\n## Example Response:\nThe social media post results indicate multiple errors when attempting to access or post content on various platforms. \n\n1. Instagram: The response shows a 400 status code with an error message indicating that the specific post request is unsupported due to missing permissions or an invalid object ID. \n\n2. X Post: Success\n\n3. Facebook: Success \n\n4. LinkedIn: Also returned an 'Unable to sign without access token' error. \n\nOverall, access token issues and unsupported requests are frequent problems across these social media platforms.\n",
+        "options": {}
+      },
+      "id": "c3e70313-e034-4b56-b32e-0b3d4482b159",
+      "name": "Prepare Results Message",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        304,
+        1744
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Upload Image (optional)",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".jpg, .png, .jpeg"
+            },
+            {
+              "fieldLabel": "Generate Custom Image using AI Image Generator",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Yes"
+                  },
+                  {
+                    "option": "No"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "formTitle": "Generate Post Image",
+          "buttonLabel": "Submit"
+        }
+      },
+      "id": "c4f56902-803b-450e-98ff-be408ff2ccf7",
+      "name": "Image Choice",
+      "type": "n8n-nodes-base.form",
+      "position": [
+        -720,
+        2496
+      ],
+      "webhookId": "0dc811ef-b2e0-4213-a0c9-e9b5fb9fcbf1",
+      "typeVersion": 1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $env.EMAIL_ADDRESS_JOE }} ",
+        "subject": "🔥RESULTS🔥 Social Media Factory",
+        "message": "={{ $json.output }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "id": "a7cb6bbd-9ab9-4bcd-8f5a-9ccfa3ed2b69",
+      "name": "Gmail Results",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        640,
+        1616
+      ],
+      "webhookId": "0a81b95a-cd82-465d-8450-cf38518a4cbb",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yL8Nb9BxFcOIbYXK",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=866273791",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "71690ee4-8ca9-4beb-9feb-65ec1224da1b",
+      "name": "Telegram Results",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        688,
+        1792
+      ],
+      "webhookId": "bb40ede7-03cf-493d-b051-196b96725925",
+      "typeVersion": 1.2,
+      "credentials": {
+        "telegramApi": {
+          "id": "ejNhZg2ebPMojamN",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 620,
+        "width": 940,
+        "color": 4
+      },
+      "id": "140c80d0-4729-4d9d-973c-c09acd1b19aa",
+      "name": "Sticky Note13",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -32,
+        1456
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "e32d270f-f258-4522-94e1-2cb7ee4e8d2a",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "56a7a66f-bd6e-4bff-9c05-8789575dc510",
+      "name": "Is Content Approved?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        64,
+        1056
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "content": "## Alternative User Uploaded Image\n(optional)",
+        "height": 580,
+        "width": 300
+      },
+      "id": "9077abd6-7a78-40d4-8394-c47978049aa3",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -848,
+        2304
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Implement Additional Approval Here\n(optional)",
+        "height": 340,
+        "width": 460
+      },
+      "id": "8d6c8f36-4aab-40e8-bb61-4f89a33f89a5",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1184,
+        944
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d1915ab2-a302-49dd-8b94-d741a9bf511d",
+      "name": "SerpAPI",
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "position": [
+        752,
+        544
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "serpApi": {
+          "id": "jzqXr4Y9koZ9ywn5",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "### 💡Notes\n\nAdjust the Social Media Content Factory prompts to suit your personal or business requirements.\n\nUpdate Credentials for:\n- OpenAI API Key\nhttps://auth.openai.com/log-in\n\n- Google Studio API\nhttps://aistudio.google.com/app/apikey\n\n- SERP API Key\nhttps://serpapi.com/\n\n- Gmail OAuth\nhttps://docs.n8n.io/integrations/builtin/credentials/google/\n\n- Telegram Bot (Optional)\nhttps://docs.n8n.io/integrations/builtin/credentials/telegram/\n\n- imgbb\nhttps://imgbb.com/",
+        "height": 500,
+        "width": 480
+      },
+      "id": "279ab8fa-2ccd-45f4-8668-1b773f57e4e8",
+      "name": "Sticky Note16",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1088,
+        176
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "💡Notes\n\nUpdate all Social Media Platform Credentials as required.\n\nAdjust parameters and content for each platform to suit your needs.",
+        "height": 180,
+        "width": 300
+      },
+      "id": "8f784376-09b6-48f1-8e58-dc2974d3b4c5",
+      "name": "Sticky Note17",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2240,
+        944
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "jsCode": "$input.first().binary.data = $input.first().binary.Upload_Image__optional_\ndelete $input.first().binary.Upload_Image__optional_\nreturn $input.first()"
+      },
+      "id": "5caf4ee2-0dc8-4e96-8c4b-703ac56b3c51",
+      "name": "Rename Binary File",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        -768,
+        2624
+      ],
+      "typeVersion": 2,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        464,
+        544
+      ],
+      "id": "cea5490e-e4ef-4305-8ae8-6969c9a7ba73",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "rjzvmAQzv0PHyHxI",
+          "name": "Google Gemini(PaLM) Api account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ JSON.parse($json.outputs[0].info.result).url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        800,
+        928
+      ],
+      "id": "696fc877-597f-46e1-bd10-1b1940ce2e4a",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "name": "generatedimage.png",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1Q5TxAzWF-yjyXEOJhq3oJ_UMlPG6_Z1Q",
+          "mode": "list",
+          "cachedResultName": "Resume Automation",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1Q5TxAzWF-yjyXEOJhq3oJ_UMlPG6_Z1Q"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1200,
+        896
+      ],
+      "id": "d2b81fbe-526e-488d-86ae-e200ba6373ab",
+      "name": "Upload file1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "O6fw84rvI5MZP0bz",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1712,
+        528
+      ],
+      "id": "57f1b463-71e6-4011-9d49-da13c0b18762",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "kVEwyJLFDmI2Gf2o",
+          "name": "Vivek_API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "=vipinnegi0038@gmail.com",
+        "subject": "=🔥FOR APPROVAL🔥{{ $('Social Media Content Factory').item.json.output.name }} - {{ $('Social Media Content Factory').item.json.output.description }}",
+        "message": "=<h3>📱 Social Media Content Overview</h3>\n<p>Please review the generated images and captions for each platform below:</p>\n\n<hr style=\"border: 1px solid #eee;\" />\n\n<!-- 1. INSTAGRAM -->\n<h4>📸 Instagram Post</h4>\n<p><strong>Caption:</strong><br>\n</p>\n{{ $('Social Media Content Factory').item.json.output.platform_posts.Instagram.caption }}<br>\n<img src=\"{{ JSON.parse($('instagram Image').item.json.outputs[0].info.result).url }}\" alt=\"Instagram Generated Image\" style=\"max-width: 100%; max-height: 400px; height: auto; border-radius: 8px; border: 1px solid #ddd;\"/>\n\n<hr style=\"border: 1px solid #eee; margin: 20px 0;\" />\n\n<!-- 2. LINKEDIN -->\n<h4>💼 LinkedIn Post</h4>\n<p><strong>Caption:</strong><br>\n{{ $('Social Media Content Factory').item.json.output.platform_posts.LinkedIn.post }}</p>\n<br>\n<img src=\"{{ JSON.parse($('HTTP Request2').item.json.outputs[0].info.result).url }}\" alt=\"LinkedIn Generated Image\" style=\"max-width: 100%; max-height: 400px; height: auto; border-radius: 8px; border: 1px solid #ddd;\"/>\n\n<hr style=\"border: 1px solid #eee; margin: 20px 0;\" />\n\n<!-- 3. FACEBOOK -->\n<h4>👥 Facebook Post</h4>\n<p><strong>Caption:</strong><br>\n{{ $('Social Media Content Factory').item.json.output.platform_posts.Facebook.post }}</p>\n<br>\n<img src=\"{{ JSON.parse($('Facbook Image').item.json.outputs[0].info.result).url }}\" alt=\"Facebook Generated Image\" style=\"max-width: 100%; max-height: 400px; height: auto; border-radius: 8px; border: 1px solid #ddd;\"/>\n\n<hr style=\"border: 1px solid #eee; margin: 20px 0;\" />\n\n<!-- 4. TWITTER / X -->\n<h4>🐦 Twitter (X) Post</h4>\n<p><strong>Caption:</strong><br>\n{{ $('Social Media Content Factory').item.json.output.platform_posts['X-Twitter'].post }}</p>\n<br>\n<img src=\"{{ JSON.parse($('Twitter Image').item.json.outputs[0].info.result).url }}\" alt=\"Twitter Generated Image\" style=\"max-width: 100%; max-height: 400px; height: auto; border-radius: 8px; border: 1px solid #ddd;\"/>",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double"
+          }
+        },
+        "options": {
+          "limitWaitTime": {
+            "values": {
+              "resumeAmount": 45,
+              "resumeUnit": "minutes"
+            }
+          },
+          "appendAttribution": true
+        }
+      },
+      "id": "97d631ef-d09d-43e4-8d1d-10025c05480c",
+      "name": "Gmail User for Approval1",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        1472,
+        1152
+      ],
+      "webhookId": "c46cf421-ddb6-45a8-b83b-80b381666f0e",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "yL8Nb9BxFcOIbYXK",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        288,
+        1648
+      ],
+      "id": "6af5b8e9-b4d5-455f-b7aa-b8ee134a923b",
+      "name": "Groq Chat Model1",
+      "credentials": {
+        "groqApi": {
+          "id": "kVEwyJLFDmI2Gf2o",
+          "name": "Vivek_API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        176,
+        1952
+      ],
+      "id": "65ed96d8-96d4-4b30-83e7-b1e71b706642",
+      "name": "Groq Chat Model2",
+      "credentials": {
+        "groqApi": {
+          "id": "kVEwyJLFDmI2Gf2o",
+          "name": "Vivek_API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpRequestMethod": "POST",
+        "graphApiVersion": "v23.0",
+        "node": "17841420161085360",
+        "edge": "media",
+        "options": {
+          "queryParameters": {
+            "parameter": [
+              {
+                "name": "image_url",
+                "value": "data:image/jpeg;base64,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"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        2544,
+        960
+      ],
+      "id": "84c63878-9933-40d2-941d-52aaa31043e5",
+      "name": "Facebook Graph API",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "w1bNNOWxXehKQojL",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.instagram.com/v23.0/17841420161085360/media",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "image_url",
+              "value": "https://plus.unsplash.com/premium_photo-1675714692342-01dfd2e6b6b5?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+              "name": "caption",
+              "value": "This is test"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1984,
+        1040
+      ],
+      "id": "58403926-65cd-4d80-80f4-f74099387004",
+      "name": "Instagram Creation_Id",
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "w1bNNOWxXehKQojL",
+          "name": "Unnamed credential"
+        },
+        "httpBearerAuth": {
+          "id": "swOq4u28CLRwUnuU",
+          "name": "instagram Auth account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.instagram.com/v23.0/17841420161085360/media_publish",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpBearerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "creation_id",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2176,
+        1040
+      ],
+      "id": "7200519b-67df-4910-a66e-052a301ebbc8",
+      "name": "Instagram Publish",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "swOq4u28CLRwUnuU",
+          "name": "instagram Auth account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.x.com/2/media/upload",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "media_category",
+              "value": "tweet_image"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "media",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2048,
+        1232
+      ],
+      "id": "450a7f56-1ef1-4576-a0b7-9a2f3b547176",
+      "name": "Twitter Media Id get",
+      "credentials": {
+        "oAuth2Api": {
+          "id": "s2dxbeYWQ5LcZx9E",
+          "name": "Twitter oauth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.x.com/2/tweets",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2224,
+        1232
+      ],
+      "id": "06fcd5a4-7239-4a4a-a9d6-9a60df6fda79",
+      "name": "Twitter Upload Image",
+      "credentials": {
+        "oAuth2Api": {
+          "id": "s2dxbeYWQ5LcZx9E",
+          "name": "Twitter oauth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/agents",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": " application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n     \"model\": \"mistral-medium-latest\",\n     \"name\": \"Image Generation Agent\",\n     \"description\": \"Agent used to generate images.\",\n     \"instructions\": \"Use the image generation tool when you have to create images.\",\n     \"tools\": [\n       {\n         \"type\": \"image_generation\"\n       }\n     ],\n     \"completion_args\": {\n       \"temperature\": 0.3,\n       \"top_p\": 0.95\n     }\n  }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        320,
+        1184
+      ],
+      "id": "ba8a2d7b-2c2f-4f38-97a4-a5d1b7248f23",
+      "name": "HTTP Request3",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "FKeZ8s1j4iEbzSY6",
+          "name": "vipinnegi mistral  account 2"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "={{ JSON.parse($json.outputs[0].info.result).url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        832,
+        1136
+      ],
+      "id": "1df3bb7a-8358-4eca-bd34-3933fd95dec2",
+      "name": "HTTP Request5"
+    },
+    {
+      "parameters": {
+        "url": "={{ JSON.parse($json.outputs[0].info.result).url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        864,
+        1296
+      ],
+      "id": "b8000b70-1976-46c7-a598-545a180a91e2",
+      "name": "HTTP Request7"
+    },
+    {
+      "parameters": {
+        "url": "={{ JSON.parse($json.outputs[0].info.result).url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        848,
+        1472
+      ],
+      "id": "c9fdf31b-a71e-4252-beae-f11d5cecaae0",
+      "name": "HTTP Request9"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/conversations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n     \"inputs\": \"{{ $('Social Media Content Factory').item.json.output.platform_posts.Facebook.image_suggestion }}\",\n     \"stream\": false,\n     \"agent_id\": \"{{ $json.id }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        640,
+        1280
+      ],
+      "id": "51f140ba-9249-42e7-a09e-0b55d97dac2f",
+      "name": "Facbook Image",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "ArJ2JFrrWECyrtwm",
+          "name": "vipinsingh mistral"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/conversations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n     \"inputs\": \"{{ $('Social Media Content Factory').item.json.output.platform_posts['X-Twitter'].image_suggestion }}. \\n  Use the shoes in the image {{ $('Submit Social Post Details').item.json['Link (optional)'] }}\",\n     \"stream\": false,\n     \"agent_id\": \"{{ $json.id }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        656,
+        1440
+      ],
+      "id": "6036a843-8557-4cbc-997b-48dfca3e04d2",
+      "name": "Twitter Image",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "ArJ2JFrrWECyrtwm",
+          "name": "vipinsingh mistral"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/agents",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": " application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n     \"model\": \"mistral-medium-latest\",\n     \"name\": \"Image Generation Agent\",\n     \"description\": \"Agent used to generate images.\",\n     \"instructions\": \"Use the image generation tool when you have to create images.\",\n     \"tools\": [\n       {\n         \"type\": \"image_generation\"\n       }\n     ],\n     \"completion_args\": {\n       \"temperature\": 0.3,\n       \"top_p\": 0.95\n     }\n  }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        400,
+        960
+      ],
+      "id": "90e36978-2d09-4e90-8291-2d9b2cb4aa63",
+      "name": "instagram Image",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "FKeZ8s1j4iEbzSY6",
+          "name": "vipinnegi mistral  account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/conversations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n     \"inputs\": \"{{ $('Social Media Content Factory').item.json.output.platform_posts.LinkedIn.image_suggestion }}\",\n     \"stream\": false,\n     \"agent_id\": \"{{ $json.id }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        640,
+        1088
+      ],
+      "id": "14b6f50d-682c-4a34-992f-dd99b5e2d008",
+      "name": "Linjedin Image",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "ArJ2JFrrWECyrtwm",
+          "name": "vipinsingh mistral"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/conversations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n     \"inputs\": \"{{ $('Social Media Content Factory').item.json.output.platform_posts.Instagram.image_suggestion }}\",\n     \"stream\": false,\n     \"agent_id\": \"{{ $json.id }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        608,
+        928
+      ],
+      "id": "81744af3-9ae7-4010-a999-9cf36751383f",
+      "name": "indtagram image",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "ArJ2JFrrWECyrtwm",
+          "name": "vipinsingh mistral"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Submit Social Post Details": [
+      {
+        "json": {
+          "Topic": "shoes",
+          "Keywords or Hashtags (optional)": "",
+          "Link (optional)": "https://neemans.com/products/urban-casuals-pop-cherry",
+          "submittedAt": "2026-06-09T01:05:56.900+05:30",
+          "formMode": "test"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Gmail User for Approval1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Instagram Creation_Id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Facebook Post",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "LinkedIn Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "Social Media Content Factory",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "X Result": {
+      "main": [
+        [
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Prepare Results Message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Prepare Results Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image Choice": {
+      "main": [
+        [
+          {
+            "node": "Rename Binary File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Approved?": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Twitter Media Id get",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Post": {
+      "main": [
+        [
+          {
+            "node": "Facebook Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn Post": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Results": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Result": {
+      "main": [
+        [
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Instragram Post": {
+      "main": [
+        [
+          {
+            "node": "Instagram Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn Result": {
+      "main": [
+        [
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Instagram Result": {
+      "main": [
+        [
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Content Approved?": {
+      "main": [
+        [
+          {
+            "node": "instagram Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Social Media Content": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Social Media Content Factory",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Results Email": {
+      "main": [
+        [
+          {
+            "node": "Gmail Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail User for Approval": {
+      "main": [
+        [
+          {
+            "node": "Is Content Approved?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Results Message": {
+      "main": [
+        [
+          {
+            "node": "Telegram Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Image to imgbb.com3": {
+      "main": [
+        []
+      ]
+    },
+    "Submit Social Post Details": {
+      "main": [
+        [
+          {
+            "node": "Social Media Content Factory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Content Review Email": {
+      "main": [
+        [
+          {
+            "node": "Gmail User for Approval",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Social Media Content Factory": {
+      "main": [
+        [
+          {
+            "node": "Prepare Content Review Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Social Media Content Factory",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Upload file1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Prepare Content Review Email",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail User for Approval1": {
+      "main": [
+        [
+          {
+            "node": "Is Approved?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Prepare Results Email",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Prepare Results Message",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram Creation_Id": {
+      "main": [
+        [
+          {
+            "node": "Instagram Publish",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Instagram Publish": {
+      "main": [
+        [
+          {
+            "node": "Instragram Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Twitter Media Id get": {
+      "main": [
+        [
+          {
+            "node": "Twitter Upload Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Twitter Upload Image": {
+      "main": [
+        [
+          {
+            "node": "X Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Facbook Image": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Twitter Image": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request7": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "HTTP Request9": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "instagram Image": {
+      "main": [
+        [
+          {
+            "node": "indtagram image",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Linjedin Image",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Facbook Image",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Twitter Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Linjedin Image": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "indtagram image": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "27203fe1-b3e3-4c1b-bbae-24ffd625e053",
+  "meta": {
+    "instanceId": "e1935e4e9669fe51a1c4871efb0f303e30e82d0c27dd1a062372b7c784d2964b"
+  },
+  "id": "T1tjqII6WEPVmhjc",
+  "tags": []
+}
